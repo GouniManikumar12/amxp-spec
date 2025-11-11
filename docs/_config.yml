@@ -1,0 +1,10 @@
+# Documentation Configuration
+theme: jekyll-theme-cayman
+title: AMXP Documentation
+description: Technical documentation for the AdMesh Exchange Protocol
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
