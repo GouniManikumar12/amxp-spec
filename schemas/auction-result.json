@@ -1,41 +1,111 @@
 {
-  "$id": "https://aip.org/schemas/auction-result.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "AuctionResult",
+  "description": "Result of an ad auction, returned to the platform with the winning creative",
   "type": "object",
-  "required": ["auction_id","serve_token","winner","render","ttl_ms","auth"],
+  "required": [
+    "auction_id",
+    "serve_token",
+    "winner",
+    "render",
+    "ttl_ms"
+  ],
   "properties": {
-    "auction_id": { "type": "string" },
-    "serve_token": { "type": "string", "minLength": 16 },
+    "auction_id": {
+      "type": "string",
+      "description": "Unique identifier for this auction",
+      "example": "auc_981"
+    },
+    "serve_token": {
+      "type": "string",
+      "description": "Token used to track events for this ad serve",
+      "example": "stk_abcxyz123"
+    },
     "winner": {
       "type": "object",
-      "required": ["agent_id","clearing_price_cpx","preferred_unit"],
+      "description": "Information about the winning bid",
       "properties": {
-        "agent_id": { "type": "string" },
-        "clearing_price_cpx": { "$ref": "common.json#/properties/money" },
-        "preferred_unit": { "type": "string", "enum": ["CPX","CPC","CPA"] }
-      },
-      "additionalProperties": false
+        "agent_id": {
+          "type": "string",
+          "description": "ID of the winning advertiser agent",
+          "example": "ag_123"
+        },
+        "clearing_price_cpx": {
+          "type": "string",
+          "description": "Clearing price for CPX in USD",
+          "pattern": "^\\d+\\.\\d{2,}$",
+          "example": "0.042"
+        },
+        "preferred_unit": {
+          "type": "string",
+          "description": "Charging model for this serve",
+          "enum": [
+            "CPX",
+            "CPC",
+            "CPA"
+          ],
+          "example": "CPA"
+        }
+      }
     },
     "render": {
       "type": "object",
-      "required": ["label","title","url"],
+      "description": "Creative content to display to the user",
       "properties": {
-        "label": { "type": "string", "enum": ["[Ad]"] },
-        "title": { "type": "string" },
-        "body": { "type": "string" },
-        "cta": { "type": "string" },
-        "url": { "type": "string", "format": "uri" }
-      },
-      "additionalProperties": false
+        "label": {
+          "type": "string",
+          "description": "Disclosure label (always '[Ad]')",
+          "example": "[Ad]"
+        },
+        "title": {
+          "type": "string",
+          "description": "Ad title",
+          "example": "Pipedrive CRM"
+        },
+        "body": {
+          "type": "string",
+          "description": "Ad body text",
+          "example": "Built for founders."
+        },
+        "cta": {
+          "type": "string",
+          "description": "Call-to-action text",
+          "example": "Try for free"
+        },
+        "url": {
+          "type": "string",
+          "description": "Click-through URL with tracking",
+          "format": "uri",
+          "example": "https://admesh.click/stk_abcxyz123"
+        }
+      }
     },
-    "ttl_ms": { "type": "integer", "minimum": 1000, "maximum": 300000 },
-    "auth": {
-      "type": "object",
-      "required": ["sig"],
-      "properties": { "sig": { "$ref": "common.json#/properties/signature" } },
-      "additionalProperties": false
+    "ttl_ms": {
+      "type": "integer",
+      "description": "Time-to-live in milliseconds for this auction result",
+      "minimum": 1000,
+      "maximum": 300000,
+      "example": 60000
     }
   },
-  "additionalProperties": false
+  "examples": [
+    {
+      "auction_id": "auc_981",
+      "serve_token": "stk_abcxyz123",
+      "winner": {
+        "agent_id": "ag_123",
+        "clearing_price_cpx": "0.042",
+        "preferred_unit": "CPA"
+      },
+      "render": {
+        "label": "[Ad]",
+        "title": "Pipedrive CRM",
+        "body": "Built for founders.",
+        "cta": "Try for free",
+        "url": "https://admesh.click/stk_abcxyz123"
+      },
+      "ttl_ms": 60000
+    }
+  ],
+  "$id": "https://aip.org/schemas/auction-result.json"
 }

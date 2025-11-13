@@ -1,13 +1,27 @@
 {
-  "spec_version": "0.1.0",
-  "entry_id": "led-001",
-  "bid_id": "bid-001",
-  "auction_id": "auc-001",
-  "amount": 42.0,
+  "serve_token": "stk_abcxyz123",
+  "session_id": "s_001",
+  "platform_id": "pf_chatapp",
+  "agent_id": "ag_123",
+  "auction_id": "auc_981",
+  "state": "FINALIZED",
+  "final_unit": "CPA",
+  "final_charge": "10.00",
   "currency": "USD",
-  "direction": "credit",
-  "recorded_at": "2024-01-02T00:05:00Z",
-  "metadata": {
-    "note": "Net of fees"
+  "timestamps": {
+    "auction": "2025-11-11T18:00:00Z",
+    "exposure": "2025-11-11T18:00:00Z",
+    "click": "2025-11-11T18:02:00Z",
+    "conversion": "2025-11-11T18:30:00Z",
+    "finalized": "2025-11-11T19:00:00Z"
+  },
+  "charges": {
+    "cpx": "0.034",
+    "cpc": "0.45",
+    "cpa": "10.00"
+  },
+  "revenue_share": {
+    "platform_share": "3.00",
+    "network_share": "7.00"
   }
 }

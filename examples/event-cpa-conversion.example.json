@@ -1,10 +1,17 @@
 {
   "event_type": "cpa_conversion",
-  "serve_token": "stk_3pQabcdef",
-  "conversion_id": "cnv_92f",
+  "serve_token": "stk_abcxyz123",
+  "conversion_id": "cnv_001",
   "conversion_type": "signup",
   "order_value_cents": 4900,
   "currency": "USD",
-  "ts": "2025-11-11T15:05:44Z",
-  "auth": { "nonce": "n_4z9", "sig": "sig303" }
+  "conversion_metadata": {
+    "user_id": "usr_12345",
+    "order_id": "ord_67890",
+    "product_ids": [
+      "prod_crm_pro",
+      "prod_addon_analytics"
+    ]
+  },
+  "ts": "2025-11-11T18:30:00Z"
 }
