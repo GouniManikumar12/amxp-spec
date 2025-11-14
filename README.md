@@ -198,6 +198,98 @@ This repository contains the **formal protocol specification**:
 
 **Relationship:**
 - **This repo** = Formal specification and schemas
+- **Mintlify site** = Rendered docs derived from this repository
+
+---
+
+## Operating Your Own AIP Specification Fork
+
+The reference `aip-spec` repo is intentionally open so operators can host a public-facing version, adapt it to their network, and still remain compatible with the core protocol. Follow the steps below whenever you want to stand up and maintain your own fork.
+
+### Prerequisites
+
+- GitHub account with permission to create public repositories
+- Git 2.40+, Node.js 18+, npm 9+, and Python 3.10+ installed
+- Familiarity with JSON Schema, Markdown documentation workflows, and GitHub Pages (or equivalent static hosting)
+- Optional: access to a CI system (GitHub Actions, CircleCI, etc.) for automated conformance checks
+
+### 1. Fork and Clone the Repository
+
+```bash
+gh repo fork admesh-labs/aip-spec --clone --remote
+cd aip-spec
+git remote add upstream https://github.com/admesh-labs/aip-spec.git
+```
+
+Keep `origin` pointing to your fork and `upstream` to the canonical specification.
+
+### 2. Set Up Local Development
+
+```bash
+npm ci               # installs schema + doc tooling
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r tools/requirements.txt  # optional helpers
+```
+
+Recommended editors: VS Code with JSON Schema validation, Markdown linting, and Spell Right extensions.
+
+### 3. Modify Schemas, Docs, and Examples
+
+- Update JSON Schemas in `schemas/` using Draft 2020-12 syntax; keep `$id` unique to your domain.
+- Adjust narrative documentation under `docs/` to describe your network-specific behaviors.
+- Refresh payload samples in `examples/` so they remain valid against your schemas.
+- Record every spec change in `CHANGELOG.md` and increment the version noted at the top of this README.
+
+### 4. Run Conformance & Validation
+
+```bash
+npm test                       # runs ./tests manifests against schemas
+npm run lint:docs              # optional lint check if defined
+node scripts/validate-links.mjs # ensure docs cross-links resolve
+```
+
+Only publish changes that pass the full suite. For custom extensions, add coverage in `tests/valid` and `tests/invalid` to document expected behavior.
+
+### 5. Publish Your Specification
+
+**GitHub Pages** (recommended):
+
+1. Enable Pages on your fork (Settings → Pages → Deploy from GitHub Actions).
+2. Add a workflow that runs Mintlify (or another static doc generator) pointing at your fork.
+3. Map a custom domain (e.g., `spec.your-network.com`) via DNS `CNAME` record.
+
+**Custom Hosting:**
+
+- Export the Markdown/HTML bundle and deploy to any static host (Cloudflare Pages, Netlify, S3 + CloudFront, etc.).
+- Mirror the raw JSON Schemas at stable URLs so integrators can reference them via `$id`.
+
+### 6. Stay Compatible with Upstream
+
+- Pull upstream changes regularly:
+
+```bash
+git fetch upstream
+git checkout main
+git merge upstream/main
+```
+
+- Resolve conflicts carefully; prioritize upstream transport/security rules over local overrides.
+- Keep shared namespaces (`$id`, event types, ledger states) aligned unless you intentionally version them differently.
+
+### 7. Version Custom Extensions
+
+- Use semantic versioning with a vendor suffix, e.g., `1.0.0-my-network.1`.
+- Document every extension in `docs/10-versioning-and-conformance.md` under a dedicated "Vendor Extensions" heading.
+- Provide migration notes so bidders know how your fork differs from the base protocol.
+
+### 8. Contribute Back
+
+- When fixes or enhancements are generalizable, open a PR against `admesh-labs/aip-spec`.
+- Follow `CONTRIBUTING.md` (linting, commit style, CLA checks) before submitting.
+- Reference your fork’s issues or deployments so reviewers can validate the change in context.
+
+By following this workflow you can safely innovate on top of AIP while ensuring interoperability with the core protocol and the broader bidder ecosystem.
 - **aip.mintlify.app** = Implementation guides and developer documentation
 
 ---

@@ -6,8 +6,6 @@
   "required": [
     "auction_id",
     "serve_token",
-    "winner",
-    "render",
     "ttl_ms"
   ],
   "properties": {
@@ -15,6 +13,11 @@
       "type": "string",
       "description": "Unique identifier for this auction",
       "example": "auc_981"
+    },
+    "no_bid": {
+      "type": "boolean",
+      "description": "Set to true when the auction window closes without any valid bids",
+      "default": false
     },
     "serve_token": {
       "type": "string",
@@ -88,6 +91,20 @@
       "example": 60000
     }
   },
+  "oneOf": [
+    {
+      "required": ["winner", "render"],
+      "properties": {}
+    },
+    {
+      "required": ["no_bid"],
+      "properties": {
+        "no_bid": {
+          "const": true
+        }
+      }
+    }
+  ],
   "examples": [
     {
       "auction_id": "auc_981",
@@ -105,6 +122,12 @@
         "url": "https://admesh.click/stk_abcxyz123"
       },
       "ttl_ms": 60000
+    },
+    {
+      "auction_id": "auc_982",
+      "serve_token": "stk_no_bid",
+      "ttl_ms": 60000,
+      "no_bid": true
     }
   ],
   "$id": "https://aip.org/schemas/auction-result.json"

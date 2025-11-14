@@ -29,11 +29,12 @@ Once a higher event (like CPA) is verified, lower-tier events (CPX or CPC) are n
 ## Event Lifecycle
 
 ```
-[Auction] → [Exposure] → [Click] → [Conversion] → [Finalized]
+[Context Request] → [Async Auction Window & Bid Responses] → [Auction Result or no_bid] → [Exposure] → [Click] → [Conversion] → [Finalized]
 ```
 
 Each transition is verified and timestamped.
 If no further event occurs, the lifecycle ends at the last verified state.
+During the asynchronous auction stage, bidders push signed payloads to `POST /aip/bid-response` while the window is open. Only bids accepted within the 30–70 ms window advance the ledger to `PENDING`; a `no_bid` outcome records the auction but skips the exposure stage entirely.
 
 ## Event Schemas
 
