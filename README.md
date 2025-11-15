@@ -59,12 +59,30 @@ Only the highest-value event is charged per `serve_token`.
 
 ---
 
+## Extension Namespace
+
+AIP supports innovation without fragmentation through a controlled extension namespace. Any operator can add new fields immediately inside a dedicated `ext` object, where their custom parameters live under their own vendor ID. This gives companies full flexibility to experiment, pass proprietary data, or build advanced features without ever touching or breaking the core protocol. If an extension proves useful across the ecosystem, the operator can submit a lightweight RFC, and we evaluate it for inclusion in the next version of AIP. This model keeps the standard stable, predictable, and clean, while allowing rapid evolution on the edges — the same governance pattern used by OpenRTB, OAuth, and Kubernetes.
+
+Each schema defines an optional `ext` container that may include any number of vendor IDs (e.g., `"ext": { "acme.ai": { ... } }`). Operators are expected to document their namespaces and follow the RFC process below to promote broadly useful fields into the core spec.
+
+---
+
+## Platform ↔ Operator Interface
+
+- **`platform-request`** – Payload AI platforms send to operators when a user expresses commercial intent. It captures raw query text, locale/geo, optional conversation history, transport auth, and any vendor extensions under `ext`.
+- **`context-request`** – Payload operators send to subscribed brand agents after classifying the opportunity. Operators may derive or redact fields from the originating `platform-request` before fanout.
+
+This split keeps the platform/operator contract stable while allowing operators to enrich or anonymize data before reaching bidders.
+
+---
+
 ## Repository Structure
 
 ```
 aip-spec/
 ├── schemas/              # JSON Schema definitions (Draft 2020-12)
 │   ├── context-request.json
+│   ├── platform-request.json
 │   ├── bid.json
 │   ├── auction-result.json
 │   ├── event-cpx-exposure.json

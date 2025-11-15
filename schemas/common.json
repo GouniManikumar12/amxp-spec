@@ -21,5 +21,20 @@
     "nonce": { "type": "string", "minLength": 8, "maxLength": 64 },
     "signature": { "type": "string", "minLength": 16 }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "definitions": {
+    "extensionNamespace": {
+      "title": "Extension Namespace",
+      "description": "Vendor-specific extension container keyed by unique vendor IDs.",
+      "type": "object",
+      "patternProperties": {
+        "^[a-z0-9][a-z0-9_-]{1,63}$": {
+          "type": "object",
+          "description": "Custom fields owned by the vendor namespace.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }

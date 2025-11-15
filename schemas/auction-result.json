@@ -89,6 +89,9 @@
       "minimum": 1000,
       "maximum": 300000,
       "example": 60000
+    },
+    "ext": {
+      "$ref": "./common.json#/definitions/extensionNamespace"
     }
   },
   "oneOf": [
