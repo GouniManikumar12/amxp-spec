@@ -7,7 +7,8 @@
     "cpx": "0.05",
     "cpc": "0.45",
     "cpa": "10.00",
-    "currency": "USD"
+    "currency": "USD",
+    "preferred_pricing_model": "CPA"
   },
   "offer": {
     "creative_input": {

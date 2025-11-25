@@ -63,6 +63,12 @@
           "pattern": "^[A-Z]{3}$",
           "default": "USD",
           "example": "USD"
+        },
+        "preferred_pricing_model": {
+          "type": "string",
+          "description": "Preferred pricing model for billing (CPX, CPC, or CPA)",
+          "enum": ["CPX", "CPC", "CPA"],
+          "example": "CPA"
         }
       },
       "additionalProperties": false
@@ -171,7 +177,8 @@
         "cpx": "0.05",
         "cpc": "0.45",
         "cpa": "10.00",
-        "currency": "USD"
+        "currency": "USD",
+        "preferred_pricing_model": "CPA"
       },
       "offer": {
         "creative_input": {

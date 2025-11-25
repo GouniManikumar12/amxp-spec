@@ -6,7 +6,8 @@
   "pricing": {
     "cpx": "0.05",
     "cpc": "0.40",
-    "currency": "USD"
+    "currency": "USD",
+    "preferred_pricing_model": "CPC"
   },
   "offer": {
     "creative_input": {
