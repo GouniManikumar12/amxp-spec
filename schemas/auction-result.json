@@ -44,19 +44,8 @@
       }
     },
     "render": {
-      "type": "object",
-      "description": "Creative payload",
-      "properties": {
-        "label": { "type": "string", "example": "[Ad]" },
-        "title": { "type": "string", "example": "Scale your CRM" },
-        "body": { "type": "string", "example": "Built for founders." },
-        "cta": { "type": "string", "example": "Try for free" },
-        "url": {
-          "type": "string",
-          "format": "uri",
-          "example": "https://admesh.click/stk_abcxyz123"
-        }
-      }
+      "$ref": "./creative.json",
+      "description": "Format-specific creative content (weave, tail, or product_card format)"
     },
     "ttl_ms": {
       "type": "integer",

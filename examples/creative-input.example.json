@@ -1,0 +1,23 @@
+{
+  "brand_name": "Nimbus",
+  "product_name": "Nimbus CRM Pro",
+  "short_description": "CRM built for growing teams, with AI-assisted workflows.",
+  "long_description": "Nimbus CRM Pro is designed for teams of 5-50 people who need intelligent pipeline management. It includes automated follow-ups, collaborative forecasting, and embedded AI copilots that help close deals faster.",
+  "value_props": [
+    "Automated pipeline insights",
+    "Collaborative forecasting",
+    "AI-powered deal recommendations"
+  ],
+  "context_snippet": "For startups needing higher limits and automated expense workflows.",
+  "cta_label": "Start Free Trial",
+  "cta_url": "https://nimbus.example.com/signup",
+  "assets": {
+    "logo_url": "https://cdn.example.com/nimbus/logo.png",
+    "image_urls": ["https://cdn.example.com/nimbus/crm.png"],
+    "resource_urls": ["https://nimbus.example.com/signup"]
+  },
+  "product_id": "prod_nimbus_001",
+  "categories": ["crm", "saas"],
+  "fallback_formats": ["tail", "product_card"]
+}
+

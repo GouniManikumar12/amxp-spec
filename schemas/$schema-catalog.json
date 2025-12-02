@@ -6,13 +6,17 @@
   "properties": {},
   "allOf": [
     { "$ref": "common.json" },
+    { "$ref": "platform-request.json" },
     { "$ref": "context-request.json" },
+    { "$ref": "creative-input.json" },
+    { "$ref": "creative.json" },
     { "$ref": "bid.json" },
     { "$ref": "auction-result.json" },
     { "$ref": "event-cpx-exposure.json" },
     { "$ref": "event-cpc-click.json" },
     { "$ref": "event-cpa-conversion.json" },
-    { "$ref": "ledger-record.json" }
+    { "$ref": "ledger-record.json" },
+    { "$ref": "wallet-record.json" }
   ],
   "additionalProperties": false
 }

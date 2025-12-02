@@ -79,61 +79,7 @@
       "required": ["creative_input"],
       "properties": {
         "creative_input": {
-          "type": "object",
-          "required": [
-            "brand_name",
-            "product_name",
-            "descriptions",
-            "value_props",
-            "resource_urls",
-            "image_urls"
-          ],
-          "properties": {
-            "brand_name": {
-              "type": "string",
-              "description": "Brand or advertiser name",
-              "example": "Nimbus CRM"
-            },
-            "product_name": {
-              "type": "string",
-              "description": "Product or offer name",
-              "example": "Nimbus CRM Pro"
-            },
-            "descriptions": {
-              "type": "array",
-              "description": "Long-form descriptions or copy blocks",
-              "items": { "type": "string" },
-              "minItems": 1,
-              "example": [
-                "CRM built for growing teams, with AI-assisted workflows."
-              ]
-            },
-            "value_props": {
-              "type": "array",
-              "description": "Short value propositions or bullets",
-              "items": { "type": "string" },
-              "minItems": 1,
-              "example": [
-                "Automated pipeline insights",
-                "Collaborative forecasting"
-              ]
-            },
-            "resource_urls": {
-              "type": "array",
-              "description": "Destination or tracking URLs",
-              "items": { "type": "string", "format": "uri" },
-              "minItems": 1,
-              "example": ["https://nimbus.example/signup"]
-            },
-            "image_urls": {
-              "type": "array",
-              "description": "Creative image URLs",
-              "items": { "type": "string", "format": "uri" },
-              "minItems": 1,
-              "example": ["https://cdn.example.com/nimbus/crm.png"]
-            }
-          },
-          "additionalProperties": false
+          "$ref": "./creative-input.json"
         }
       },
       "additionalProperties": false
@@ -165,6 +111,12 @@
     "metadata": {
       "$ref": "./common.json#/definitions/extensionNamespace",
       "description": "Optional vendor-namespaced metadata"
+    },
+    "processing_latency_ms": {
+      "type": "integer",
+      "description": "Round-trip latency from auction request receipt to bid submission (milliseconds). Used by operator to track brand agent response times.",
+      "minimum": 0,
+      "example": 42
     }
   },
   "examples": [
@@ -184,17 +136,25 @@
         "creative_input": {
           "brand_name": "Nimbus",
           "product_name": "Nimbus CRM Pro",
-          "descriptions": ["AI CRM for 5-50 person teams."],
+          "short_description": "CRM built for growing teams, with AI-assisted workflows.",
+          "long_description": "Nimbus CRM Pro is designed for teams of 5-50 people who need intelligent pipeline management. It includes automated follow-ups, collaborative forecasting, and embedded AI copilots that help close deals faster.",
           "value_props": ["Automated follow-ups", "Embedded copilots"],
-          "resource_urls": ["https://nimbus.example/signup"],
-          "image_urls": ["https://cdn.example.com/nimbus/crm.png"]
+          "context_snippet": "For startups needing higher limits and automated expense workflows.",
+          "cta_label": "Start Free Trial",
+          "cta_url": "https://nimbus.example.com/signup",
+          "assets": {
+            "logo_url": "https://cdn.example.com/nimbus/logo.png",
+            "image_urls": ["https://cdn.example.com/nimbus/crm.png"],
+            "resource_urls": ["https://nimbus.example.com/signup"]
+          }
         }
       },
       "timestamp": "2025-11-11T18:00:01Z",
       "auth": {
         "nonce": "nonce_456",
         "signature": "sig_789"
-      }
+      },
+      "processing_latency_ms": 42
     }
   ],
   "$id": "https://aip.org/schemas/bid.json"

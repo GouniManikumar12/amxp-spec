@@ -11,12 +11,8 @@
     "billable_unit": "CPC"
   },
   "render": {
-    "label": "[Ad]",
-    "title": "Nimbus CRM Pro",
-    "body": "AI-native CRM for 5-50 person teams.",
-    "cta": "Try for free",
-    "url": "https://admesh.click/stk_abcxyz123",
-    "image": "https://cdn.example.com/nimbus/crm.png"
+    "format": "weave",
+    "weave_content": "[Ad] For startups needing higher limits and automated expense workflows. CRM built for growing teams, with AI-assisted workflows. Learn more: https://admesh.click/stk_abcxyz123"
   },
   "ttl_ms": 60000
 }
